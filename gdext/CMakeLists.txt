@@ -8,6 +8,7 @@ if (WIN32)
 endif()
 file(TO_CMAKE_PATH "$ENV{VCPKG_ROOT}" VCPKG_ROOT)
 set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+#"-DCMAKE_TOOLCHAIN_FILE=C:/Users/Thomas/Applications/vcpkg/scripts/buildsystems/vcpkg.cmake"
 
 project(imgui-godot-native CXX)
 

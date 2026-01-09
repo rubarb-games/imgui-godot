@@ -127,6 +127,37 @@ to install and update imgui-godot. The configuration should be something like:
 }
 ```
 
+## Project setup
+
+### Requirements
+
+- PIP: [instructions](https://pip.pypa.io/en/stable/installation/)
+- VCPKG: [instructions](https://learn.microsoft.com/en-gb/vcpkg/get_started/get-started?pivots=shell-cmd)
+
+### Step by step
+
+Update submodules
+`git submodule update --init --recursive`
+
+Install ply
+`pip install ply`
+
+Generate imgui bindings
+`cd gdext/dear_bindings`
+`.\BuildAllBindings.bat`
+`cd ..`
+`python .\scripts\gds_bindings.py`
+
+Integrate vcpkg modules
+`vcpkg integrate install`
+
+Open the gdext folder in CLion
+Setup the CMake project to both build and install
+Run cmake
+
+Running scons doesn't seem to make a difference. It complains about a lack of freetype, which CMake doesn't.
+
+
 ## Credits
 
 Code written by Patrick Dawson and contributors, released under the MIT license
