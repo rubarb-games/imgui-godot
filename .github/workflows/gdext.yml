@@ -1,6 +1,7 @@
 name: 🦕 C++ GDExtension
 
 on:
+  workflow_dispatch:
   push:
     branches: "*"
     tags: v*
