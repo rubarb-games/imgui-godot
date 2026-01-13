@@ -79,11 +79,11 @@ void initialize_ign_module(ModuleInitializationLevel p_level)
     Engine::get_singleton()->register_singleton("ImGuiGD", gd);
     sync_modules();
 
-    if (!ProjectSettings::get_singleton()->has_setting("autoload/ImGuiRoot"))
-    {
-        UtilityFunctions::push_warning(
-            "[imgui-godot] Plugin is not enabled. If you call ImGui methods, your project will crash!");
-    }
+    // if (!ProjectSettings::get_singleton()->has_setting("autoload/ImGuiRoot"))
+    // {
+    //     UtilityFunctions::push_warning(
+    //         "[imgui-godot] Plugin is not enabled. If you call ImGui methods, your project will crash!");
+    // }
 }
 
 void uninitialize_ign_module(ModuleInitializationLevel p_level)
