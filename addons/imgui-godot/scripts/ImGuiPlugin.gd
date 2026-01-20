@@ -6,7 +6,6 @@ const imgui_root := "res://addons/imgui-godot/data/ImGuiRoot.tscn"
 
 func _enter_tree():
     Engine.register_singleton("ImGuiPlugin", self)
-    add_autoload_singleton("ImGuiRoot", imgui_root)
 
     # register export plugin
     _exporter = ImGuiExporter.new()
@@ -63,7 +62,6 @@ func check_csproj(fn):
 
 func _exit_tree():
     remove_export_plugin(_exporter)
-    remove_autoload_singleton("ImGuiRoot")
     Engine.unregister_singleton("ImGuiPlugin")
 
 
@@ -109,10 +107,6 @@ class ImGuiExporter extends EditorExportPlugin:
         if not export_imgui:
             print("imgui-godot: not exporting (ignore 'failed to load GDExtension' error)")
 
-            # disable autoload
-            if ProjectSettings.has_setting("autoload/ImGuiRoot"):
-                plugin.remove_autoload_singleton("ImGuiRoot")
-
             # prevent copying of GDExtension library (causes printed error)
             var da := DirAccess.open("res://addons/imgui-godot")
             if da.file_exists("imgui-godot-native.gdextension"):
@@ -131,9 +125,6 @@ class ImGuiExporter extends EditorExportPlugin:
 
     func _export_end() -> void:
         if not export_imgui:
-            # restore autoload
-            plugin.add_autoload_singleton("ImGuiRoot", imgui_root)
-
             # restore GDExtension
             if extension_list_file.size() > 0:
                 var fi := FileAccess.open("res://.godot/extension_list.cfg", FileAccess.WRITE)
